@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/src/components/layout/header";
+import { Footer } from "@/src/components/layout/footer";
+import { LanguageProvider } from "@/src/contexts/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Snap-d",
-  description: "Ứng dụng responsive phù hợp mọi thiết bị",
+  title: "Snap D - Khám phá Đà Lạt",
+  description: "Nền tảng khám phá và đánh giá địa điểm du lịch tại Đà Lạt",
 };
 
 export const viewport = {
@@ -29,11 +32,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="vi">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>
+          <Header />
+          <main className="min-h-screen pt-4 ">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
