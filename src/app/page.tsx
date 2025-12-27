@@ -103,6 +103,7 @@ export default function App() {
             toggleFavorite={toggleFavorite}
             onFavoritesClick={handleGoToFavorites}
             onProfileClick={handleGoToProfile}
+            onChatBotClick={handleGoToChatBot}
           />
         )}
         {currentView === 'detail' && selectedDestination && (
@@ -123,12 +124,15 @@ export default function App() {
             toggleFavorite={toggleFavorite}
             onBackToHome={handleBackToHome}
             onProfileClick={handleGoToProfile}
+            onChatBotClick={handleGoToChatBot}
           />
         )}
         {currentView === 'profile' && (
           <Profile
             onBackToHome={handleBackToHome}
             favoritesCount={favorites.length}
+            onFavoritesClick={handleGoToFavorites}
+            onChatBotClick={handleGoToChatBot}
           />
         )}
         {currentView === 'chatbot' && (

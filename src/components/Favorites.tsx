@@ -8,9 +8,10 @@ interface FavoritesProps {
   toggleFavorite: (id: number) => void;
   onBackToHome: () => void;
   onProfileClick: () => void;
+  onChatBotClick: () => void;
 }
 
-export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBackToHome, onProfileClick }: FavoritesProps) {
+export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBackToHome, onProfileClick, onChatBotClick }: FavoritesProps) {
   // All destinations data
   const allDestinations: Destination[] = [
     {
@@ -144,7 +145,12 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
       </div>
 
       {/* Bottom Navigation - Mobile Only */}
-      <BottomNav currentView="favorites" onHomeClick={onBackToHome} onProfileClick={onProfileClick} />
+      <BottomNav
+        currentView="favorites"
+        onHomeClick={onBackToHome}
+        onProfileClick={onProfileClick}
+        onChatBotClick={onChatBotClick}
+      />
     </div>
   );
 }

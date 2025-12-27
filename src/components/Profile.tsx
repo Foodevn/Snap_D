@@ -4,9 +4,11 @@ import { BottomNav } from './BottomNav';
 interface ProfileProps {
   onBackToHome: () => void;
   favoritesCount: number;
+  onFavoritesClick: () => void;
+  onChatBotClick: () => void;
 }
 
-export function Profile({ onBackToHome, favoritesCount }: ProfileProps) {
+export function Profile({ onBackToHome, favoritesCount, onFavoritesClick, onChatBotClick }: ProfileProps) {
   return (
     <div className="max-w-7xl mx-auto bg-white lg:bg-transparent min-h-screen pb-20 lg:pb-8">
       {/* Header */}
@@ -161,7 +163,12 @@ export function Profile({ onBackToHome, favoritesCount }: ProfileProps) {
       </div>
 
       {/* Bottom Navigation - Mobile Only */}
-      <BottomNav currentView="profile" onHomeClick={onBackToHome} />
+      <BottomNav
+        currentView="profile"
+        onHomeClick={onBackToHome}
+        onFavoritesClick={onFavoritesClick}
+        onChatBotClick={onChatBotClick}
+      />
     </div>
   );
 }

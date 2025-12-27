@@ -11,9 +11,10 @@ interface HomeProps {
   toggleFavorite: (id: number) => void;
   onFavoritesClick: () => void;
   onProfileClick: () => void;
+  onChatBotClick: () => void;
 }
 
-export function Home({ onDestinationClick, favorites, toggleFavorite, onFavoritesClick, onProfileClick }: HomeProps) {
+export function Home({ onDestinationClick, favorites, toggleFavorite, onFavoritesClick, onProfileClick, onChatBotClick }: HomeProps) {
   const [showImageSearch, setShowImageSearch] = useState(false);
 
   const popularDestinations: Destination[] = [
@@ -408,7 +409,12 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
       </div>
 
       {/* Bottom Navigation - Mobile Only */}
-      <BottomNav currentView="home" onFavoritesClick={onFavoritesClick} onProfileClick={onProfileClick} />
+      <BottomNav
+        currentView="home"
+        onFavoritesClick={onFavoritesClick}
+        onProfileClick={onProfileClick}
+        onChatBotClick={onChatBotClick}
+      />
 
       {/* Image Search Modal */}
       {showImageSearch && (
