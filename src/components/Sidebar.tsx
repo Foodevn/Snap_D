@@ -16,7 +16,7 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
         {/* Logo */}
         <div className="p-6 border-b border-gray-200">
           <img src="./logo-snap-d.png" alt="logo" className='w-40' />
-          <div className="flex items-center gap-1 text-sm text-[#FAA935] mt-2">
+          <div className="flex items-center gap-1 text-sm text-[#FAA935] mt-2 ml-3">
             <MapPin className="w-4 h-4" />
             <span>Dalat, Vietnam</span>
           </div>
@@ -27,8 +27,8 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
           <button
             onClick={onHomeClick}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${currentView === 'home'
-                ? 'bg-[#FFF5E6] text-[#FAA935]'
-                : 'text-gray-600 hover:bg-gray-50'
+              ? 'bg-[#FFF5E6] text-[#FAA935]'
+              : 'text-gray-600 hover:bg-gray-50'
               }`}
           >
             <Home className="w-5 h-5" />
@@ -38,8 +38,8 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
           <button
             onClick={onChatBotClick}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${currentView === 'chatbot'
-                ? 'bg-[#FFF5E6] text-[#FAA935]'
-                : 'text-gray-600 hover:bg-gray-50'
+              ? 'bg-[#FFF5E6] text-[#FAA935]'
+              : 'text-gray-600 hover:bg-gray-50'
               }`}
           >
             <MessageSquare className="w-5 h-5" />
@@ -49,8 +49,8 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
           <button
             onClick={onFavoritesClick}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${currentView === 'favorites'
-                ? 'bg-[#FFF5E6] text-[#FAA935]'
-                : 'text-gray-600 hover:bg-gray-50'
+              ? 'bg-[#FFF5E6] text-[#FAA935]'
+              : 'text-gray-600 hover:bg-gray-50'
               }`}
           >
             <Heart className="w-5 h-5" />
@@ -60,8 +60,8 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
           <button
             onClick={onProfileClick}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${currentView === 'profile'
-                ? 'bg-[#FFF5E6] text-[#FAA935]'
-                : 'text-gray-600 hover:bg-gray-50'
+              ? 'bg-[#FFF5E6] text-[#FAA935]'
+              : 'text-gray-600 hover:bg-gray-50'
               }`}
           >
             <User className="w-5 h-5" />
