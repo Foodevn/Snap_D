@@ -5,6 +5,7 @@ import { Home } from '../components/Home';
 import { DestinationDetail } from '../components/DestinationDetail';
 import { Favorites } from '../components/Favorites';
 import { Profile } from '../components/Profile';
+import { ChatBot } from '../components/ChatBot';
 
 
 export interface Destination {
@@ -19,7 +20,7 @@ export interface Destination {
 }
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'detail' | 'favorites' | 'profile'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'detail' | 'favorites' | 'profile' | 'chatbot'>('home');
   const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
   const [favorites, setFavorites] = useState<number[]>([]);
 
@@ -50,7 +51,10 @@ export default function App() {
         : [...prev, id]
     );
   };
-
+  const handleGoToChatBot = () => {
+    setCurrentView('chatbot');
+    setSelectedDestination(null);
+  };
   const isFavorite = (id: number) => favorites.includes(id);
 
   return (
@@ -61,6 +65,7 @@ export default function App() {
         onHomeClick={handleBackToHome}
         onFavoritesClick={handleGoToFavorites}
         onProfileClick={handleGoToProfile}
+        onChatBotClick={handleGoToChatBot}
       />
 
       {/* Main Content */}
@@ -80,6 +85,9 @@ export default function App() {
             onBack={handleBackToHome}
             isFavorite={isFavorite(selectedDestination.id)}
             toggleFavorite={() => toggleFavorite(selectedDestination.id)}
+            onFavoritesClick={handleGoToFavorites}
+            onProfileClick={handleGoToProfile}
+            onChatBotClick={handleGoToChatBot}
           />
         )}
         {currentView === 'favorites' && (
@@ -95,6 +103,13 @@ export default function App() {
           <Profile
             onBackToHome={handleBackToHome}
             favoritesCount={favorites.length}
+          />
+        )}
+        {currentView === 'chatbot' && (
+          <ChatBot
+            onHomeClick={handleBackToHome}
+            onFavoritesClick={handleGoToFavorites}
+            onProfileClick={handleGoToProfile}
           />
         )}
       </div>

@@ -1,5 +1,5 @@
 import { ArrowLeft, Heart } from 'lucide-react';
-import { Destination } from '../app/page';
+import { Destination } from '../App';
 import { BottomNav } from './BottomNav';
 
 interface FavoritesProps {
@@ -20,6 +20,7 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
       rating: 4.1,
       location: 'Dalat, Vietnam',
       price: 199,
+      type: 'hotel',
       description: 'Experience the historic beauty of Alley Palace with stunning architecture and breathtaking views.',
       facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
     },
@@ -30,78 +31,31 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
       rating: 4.5,
       location: 'Aspen, Switzerland',
       price: 199,
+      type: 'hotel',
       description: 'Aspen is as close as one can get to a storybook alpine town in America.',
       facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
     },
     {
       id: 3,
-      name: 'Mountain View',
-      image: 'https://images.unsplash.com/photo-1673528797366-382b12f9ce69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXN0bGUlMjBwYWxhY2UlMjBldXJvcGV8ZW58MXx8fHwxNzY2ODAwNTI5fDA&ixlib=rb-4.1.0&q=80&w=1080',
-      rating: 4.1,
+      name: 'The Garden Cafe',
+      image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      rating: 4.8,
       location: 'Dalat, Vietnam',
-      price: 150,
-      description: 'A beautiful mountain retreat with stunning panoramic views.',
-      facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
+      price: 25,
+      type: 'cafe',
+      description: 'A cozy garden cafe serving specialty coffee and delicious pastries.',
+      facilities: ['WiFi', 'Outdoor Seating', 'Parking', 'Pet Friendly']
     },
     {
       id: 4,
-      name: 'Lake Palace',
-      image: 'https://images.unsplash.com/photo-1673528797366-382b12f9ce69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXN0bGUlMjBwYWxhY2UlMjBldXJvcGV8ZW58MXx8fHwxNzY2ODAwNTI5fDA&ixlib=rb-4.1.0&q=80&w=1080',
-      rating: 4.1,
-      location: 'Dalat, Vietnam',
-      price: 180,
-      description: 'Serene lakeside palace offering peace and tranquility.',
-      facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
-    },
-    {
-      id: 5,
-      name: 'Explore Aspen',
-      image: 'https://images.unsplash.com/photo-1610651219730-6b580d616e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwbGFuZHNjYXBlJTIwZXVyb3BlfGVufDF8fHx8MTc2NjgwMDUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
-      rating: 4.4,
-      location: 'Aspen, Colorado',
-      price: 250,
-      description: 'Discover the charm of Aspen with world-class skiing and dining.',
-      facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
-    },
-    {
-      id: 6,
-      name: 'Luxurious Aspen',
-      image: 'https://images.unsplash.com/photo-1619164285070-f77a3d84e3db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXJib3IlMjB0b3duJTIwbm9yd2F5fGVufDF8fHx8MTc2NjgwMDUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
-      rating: 4.8,
-      location: 'Aspen, Colorado',
-      price: 320,
-      description: 'Experience luxury at its finest in this premium Aspen resort.',
-      facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
-    },
-    {
-      id: 7,
-      name: 'Forest Retreat',
-      image: 'https://images.unsplash.com/photo-1603598017939-c634f51c4b64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGhvdXNlJTIwc3Vuc2V0fGVufDF8fHx8MTc2NjgwMDUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
-      rating: 4.3,
-      location: 'Dalat, Vietnam',
-      price: 220,
-      description: 'Escape to nature in this peaceful forest retreat.',
-      facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
-    },
-    {
-      id: 8,
-      name: 'Sunset Villa',
-      image: 'https://images.unsplash.com/photo-1610651219730-6b580d616e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwbGFuZHNjYXBlJTIwZXVyb3BlfGVufDF8fHx8MTc2NjgwMDUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
+      name: 'La Terrasse Restaurant',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
       rating: 4.6,
-      location: 'Phan Thiet, Vietnam',
-      price: 280,
-      description: 'Watch stunning sunsets from this luxurious villa.',
-      facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
-    },
-    {
-      id: 9,
-      name: 'Alpine Cabin',
-      image: 'https://images.unsplash.com/photo-1603598017939-c634f51c4b64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGhvdXNlJTIwc3Vuc2V0fGVufDF8fHx8MTc2NjgwMDUzMHww&ixlib=rb-4.1.0&q=80&w=1080',
-      rating: 4.7,
-      location: 'Alps, France',
-      price: 290,
-      description: 'Cozy alpine cabin with breathtaking mountain views.',
-      facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
+      location: 'Dalat, Vietnam',
+      price: 45,
+      type: 'restaurant',
+      description: 'Fine dining restaurant offering authentic Vietnamese cuisine.',
+      facilities: ['WiFi', 'Valet Parking', 'Bar', 'Private Dining']
     }
   ];
 
@@ -158,10 +112,10 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
                     alt={destination.name}
                     className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-
+                  
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
+                  
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                     <div className="flex items-center gap-1 mb-1">

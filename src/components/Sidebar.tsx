@@ -1,13 +1,14 @@
-import { Home, LayoutGrid, Heart, User, MapPin, Settings, LogOut } from 'lucide-react';
+import { Home, MessageSquare, Heart, User, MapPin, Settings, LogOut } from 'lucide-react';
 
 interface SidebarProps {
   currentView: string;
   onHomeClick: () => void;
   onFavoritesClick: () => void;
   onProfileClick: () => void;
+  onChatBotClick: () => void;
 }
 
-export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileClick }: SidebarProps) {
+export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileClick, onChatBotClick }: SidebarProps) {
   return (
     <>
       {/* Desktop Sidebar */}
@@ -35,9 +36,16 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
             <span>Home</span>
           </button>
 
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors mb-2">
-            <LayoutGrid className="w-5 h-5" />
-            <span>Explore</span>
+          <button 
+            onClick={onChatBotClick}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${
+              currentView === 'chatbot'
+                ? 'bg-[#FFF5E6] text-[#FAA935]'
+                : 'text-gray-600 hover:bg-gray-50'
+            }`}
+          >
+            <MessageSquare className="w-5 h-5" />
+            <span>Chat Bot</span>
           </button>
 
           <button
