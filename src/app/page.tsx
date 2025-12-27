@@ -1,38 +1,103 @@
-"use client";
+"use client"
+import { useState } from 'react';
+import { Sidebar } from '../components/Sidebar';
+import { Home } from '../components/Home';
+import { DestinationDetail } from '../components/DestinationDetail';
+import { Favorites } from '../components/Favorites';
+import { Profile } from '../components/Profile';
 
-import React, { useState } from 'react';
-import { Header } from '../components/Header';
-import { LoginForm } from '../components/LoginForm';
-import { Footer } from '../components/Footer';
+
+export interface Destination {
+  id: number;
+  name: string;
+  image: string;
+  rating: number;
+  location?: string;
+  price?: number;
+  description?: string;
+  facilities?: string[];
+}
 
 export default function App() {
-  const [showLogin, setShowLogin] = useState(true);
+  const [currentView, setCurrentView] = useState<'home' | 'detail' | 'favorites' | 'profile'>('home');
+  const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  const handleDestinationClick = (destination: Destination) => {
+    setSelectedDestination(destination);
+    setCurrentView('detail');
+  };
+
+  const handleBackToHome = () => {
+    setCurrentView('home');
+    setSelectedDestination(null);
+  };
+
+  const handleGoToFavorites = () => {
+    setCurrentView('favorites');
+    setSelectedDestination(null);
+  };
+
+  const handleGoToProfile = () => {
+    setCurrentView('profile');
+    setSelectedDestination(null);
+  };
+
+  const toggleFavorite = (id: number) => {
+    setFavorites(prev =>
+      prev.includes(id)
+        ? prev.filter(favId => favId !== id)
+        : [...prev, id]
+    );
+  };
+
+  const isFavorite = (id: number) => favorites.includes(id);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header showLogin={showLogin} setShowLogin={setShowLogin} />
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar for Desktop */}
+      <Sidebar
+        currentView={currentView}
+        onHomeClick={handleBackToHome}
+        onFavoritesClick={handleGoToFavorites}
+        onProfileClick={handleGoToProfile}
+      />
 
-      <main className="flex-1 flex items-center justify-center px-4 py-8">
-        <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="grid md:grid-cols-2 gap-0">
-            {/* Left side - Hero Image */}
-            <div className="relative h-64 md:h-auto">
-              <img
-                src={"https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/10/tai-anh-phong-canh-dep-thump.jpg"}
-                alt="Travel Adventure"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Right side - Login/Register Form */}
-            <div className="p-8 md:p-12 flex items-center justify-center">
-              <LoginForm showLogin={showLogin} setShowLogin={setShowLogin} />
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
+      {/* Main Content */}
+      <div className="flex-1 lg:ml-64">
+        {currentView === 'home' && (
+          <Home
+            onDestinationClick={handleDestinationClick}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+            onFavoritesClick={handleGoToFavorites}
+            onProfileClick={handleGoToProfile}
+          />
+        )}
+        {currentView === 'detail' && selectedDestination && (
+          <DestinationDetail
+            destination={selectedDestination}
+            onBack={handleBackToHome}
+            isFavorite={isFavorite(selectedDestination.id)}
+            toggleFavorite={() => toggleFavorite(selectedDestination.id)}
+          />
+        )}
+        {currentView === 'favorites' && (
+          <Favorites
+            favorites={favorites}
+            onDestinationClick={handleDestinationClick}
+            toggleFavorite={toggleFavorite}
+            onBackToHome={handleBackToHome}
+            onProfileClick={handleGoToProfile}
+          />
+        )}
+        {currentView === 'profile' && (
+          <Profile
+            onBackToHome={handleBackToHome}
+            favoritesCount={favorites.length}
+          />
+        )}
+      </div>
     </div>
   );
 }
