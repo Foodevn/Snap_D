@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import heroImage from 'figma:asset/c8589b1d9d6acf84eb5ad15f244277aea9701f1b.png';
 import { Header } from '../components/Header';
 import { LoginForm } from '../components/LoginForm';
 import { Footer } from '../components/Footer';
