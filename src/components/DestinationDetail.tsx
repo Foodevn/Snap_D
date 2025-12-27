@@ -156,8 +156,8 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                     setCurrentImageIndex(index);
                   }}
                   className={`flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-lg overflow-hidden border-2 transition-all ${index === currentImageIndex
-                      ? 'border-[#FAA935] scale-110'
-                      : 'border-white/30 hover:border-white/60'
+                    ? 'border-[#FAA935] scale-110'
+                    : 'border-white/30 hover:border-white/60'
                     }`}
                 >
                   <img
@@ -310,10 +310,10 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                     <div className="flex items-center justify-between text-sm lg:text-base">
                       <span className="text-gray-700">{crowd.time}</span>
                       <span className={`px-3 py-1 rounded-full text-xs lg:text-sm ${crowd.level === 'low'
-                          ? 'bg-green-100 text-green-700'
-                          : crowd.level === 'medium'
-                            ? 'bg-yellow-100 text-yellow-700'
-                            : 'bg-red-100 text-red-700'
+                        ? 'bg-green-100 text-green-700'
+                        : crowd.level === 'medium'
+                          ? 'bg-yellow-100 text-yellow-700'
+                          : 'bg-red-100 text-red-700'
                         }`}>
                         {crowd.level === 'low' ? 'Quiet' : crowd.level === 'medium' ? 'Moderate' : 'Busy'}
                       </span>
@@ -321,10 +321,10 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                     <div className="w-full bg-gray-100 rounded-full h-2 lg:h-3 overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all ${crowd.level === 'low'
-                            ? 'bg-green-500'
-                            : crowd.level === 'medium'
-                              ? 'bg-yellow-500'
-                              : 'bg-red-500'
+                          ? 'bg-green-500'
+                          : crowd.level === 'medium'
+                            ? 'bg-yellow-500'
+                            : 'bg-red-500'
                           }`}
                         style={{ width: `${crowd.percentage}%` }}
                       />
@@ -377,8 +377,8 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                             <Star
                               key={i}
                               className={`w-3 h-3 lg:w-4 lg:h-4 ${i < review.rating
-                                  ? 'fill-yellow-400 text-yellow-400'
-                                  : 'fill-gray-200 text-gray-200'
+                                ? 'fill-yellow-400 text-yellow-400'
+                                : 'fill-gray-200 text-gray-200'
                                 }`}
                             />
                           ))}
@@ -443,8 +443,8 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                       >
                         <Star
                           className={`w-8 h-8 lg:w-10 lg:h-10 cursor-pointer ${i < newReview.rating
-                              ? 'fill-yellow-400 text-yellow-400'
-                              : 'fill-gray-200 text-gray-200'
+                            ? 'fill-yellow-400 text-yellow-400'
+                            : 'fill-gray-200 text-gray-200'
                             }`}
                         />
                       </button>
@@ -581,7 +581,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
           </div>
 
           {/* Book Now Button */}
-          <div className="sticky bottom-0 lg:relative bg-white border-t lg:border-0 p-5 lg:p-8 -mx-5 lg:mx-0">
+          {/* <div className="sticky bottom-0 lg:relative bg-white border-t lg:border-0 p-5 lg:p-8 -mx-5 lg:mx-0">
             <div className="flex items-center gap-4">
               <div>
                 <p className="text-xs lg:text-sm text-gray-500">
@@ -596,9 +596,10 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                 <ArrowLeft className="w-5 h-5 lg:w-6 lg:h-6 rotate-180" />
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
+
       <BottomNav onFavoritesClick={onFavoritesClick} onProfileClick={onProfileClick} onChatBotClick={onChatBotClick} />
     </div>
   );

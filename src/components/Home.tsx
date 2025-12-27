@@ -296,8 +296,7 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
       <div className="px-5 pt-6 pb-4 lg:hidden">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <p className="text-gray-600 text-sm">Explore</p>
-            <h1 className="text-2xl mt-1">SNAP DL</h1>
+            <img src="./logo-snap-d.png" alt="logo" className='w-40' />
           </div>
           <div className="flex items-center gap-1 text-sm" style={{ color: '#FAA935' }}>
             <MapPin className="w-4 h-4" />
@@ -329,13 +328,12 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
       <div className="hidden lg:block px-8 pt-8 pb-6 bg-white rounded-2xl mb-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <p className="text-gray-600">Explore</p>
             <h1 className="text-3xl mt-1">Discover Amazing Places</h1>
           </div>
         </div>
 
         {/* Search Bar */}
-        <div className="relative max-w-2xl">
+        <div className="relative max-w-4xl">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
             type="text"
@@ -357,16 +355,16 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
       {/* Tabs */}
       <div className="px-5 lg:px-8 mb-6 bg-white lg:bg-transparent">
         <div className="flex gap-3 lg:gap-6 pb-2 lg:pb-0 overflow-x-auto scrollbar-hide border-b lg:border-none">
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:bg-[#FAA935] lg:text-white lg:rounded-full text-sm text-[#FAA935] lg:border-0 border-b-2 border-[#FAA935] whitespace-nowrap flex-shrink-0">
+          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-[#FAA935] lg:text-white lg:rounded-full text-sm text-[#FAA935] lg:border-0 border-b-2 border-[#FAA935] whitespace-nowrap flex-shrink-0">
             Location
           </button>
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
+          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
             Cafe
           </button>
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
+          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
             Adventure
           </button>
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
+          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
             Restaurant
           </button>
         </div>
