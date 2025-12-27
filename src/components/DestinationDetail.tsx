@@ -86,7 +86,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
   };
 
   return (
-    <div className="max-w-7xl mb-10 mx-auto bg-white lg:bg-transparent min-h-screen">
+    <div className="max-w-7xl  mx-auto bg-white lg:bg-transparent min-h-screen">
       {/* Image Gallery Modal */}
       {showGallery && (
         <div
@@ -601,6 +601,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
             </div>
           </div> */}
         </div>
+        <div className='mb-10'></div>
       </div>
 
       <BottomNav onFavoritesClick={onFavoritesClick} onProfileClick={onProfileClick} onChatBotClick={onChatBotClick} />
