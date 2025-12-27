@@ -16,7 +16,7 @@ interface HomeProps {
 export function Home({ onDestinationClick, favorites, toggleFavorite, onFavoritesClick, onProfileClick }: HomeProps) {
   const [showImageSearch, setShowImageSearch] = useState(false);
 
-  const popularDestinations = [
+  const popularDestinations: Destination[] = [
     {
       id: 1,
       name: 'Alley Palace',

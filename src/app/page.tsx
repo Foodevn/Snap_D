@@ -15,8 +15,34 @@ export interface Destination {
   rating: number;
   location?: string;
   price?: number;
+  type?: 'hotel' | 'cafe' | 'restaurant';
   description?: string;
   facilities?: string[];
+
+  crowdLevel?: Array<{
+    time: string;
+    level: 'low' | 'medium' | 'high';
+    percentage: number;
+  }>;
+
+  menu?: Array<{
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    category: string;
+  }>;
+
+  reviews?: Array<{
+    id: number;
+    userName: string;
+    userAvatar: string;
+    rating: number;
+    comment: string;
+    date: string;
+    images?: string[];
+  }>;
 }
 
 export default function App() {
