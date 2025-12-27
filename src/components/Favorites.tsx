@@ -1,5 +1,5 @@
 import { ArrowLeft, Heart } from 'lucide-react';
-import { Destination } from '../App';
+import { Destination } from '../app/page';
 import { BottomNav } from './BottomNav';
 
 interface FavoritesProps {
@@ -20,7 +20,7 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
       rating: 4.1,
       location: 'Dalat, Vietnam',
       price: 199,
-      type: 'hotel',
+      // type: 'hotel',
       description: 'Experience the historic beauty of Alley Palace with stunning architecture and breathtaking views.',
       facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
     },
@@ -31,7 +31,7 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
       rating: 4.5,
       location: 'Aspen, Switzerland',
       price: 199,
-      type: 'hotel',
+      // type: 'hotel',
       description: 'Aspen is as close as one can get to a storybook alpine town in America.',
       facilities: ['Heater', 'Dinner', 'Tub', 'Pool']
     },
@@ -42,7 +42,7 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
       rating: 4.8,
       location: 'Dalat, Vietnam',
       price: 25,
-      type: 'cafe',
+      // type: 'cafe',
       description: 'A cozy garden cafe serving specialty coffee and delicious pastries.',
       facilities: ['WiFi', 'Outdoor Seating', 'Parking', 'Pet Friendly']
     },
@@ -53,7 +53,7 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
       rating: 4.6,
       location: 'Dalat, Vietnam',
       price: 45,
-      type: 'restaurant',
+      // type: 'restaurant',
       description: 'Fine dining restaurant offering authentic Vietnamese cuisine.',
       facilities: ['WiFi', 'Valet Parking', 'Bar', 'Private Dining']
     }
@@ -112,10 +112,10 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
                     alt={destination.name}
                     className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  
+
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  
+
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                     <div className="flex items-center gap-1 mb-1">

@@ -1,7 +1,7 @@
 import { MapPin, Search } from 'lucide-react';
 import { DestinationCard } from './DestinationCard';
 import { BottomNav } from './BottomNav';
-import { Destination } from '../App';
+import { Destination } from '../app/page';
 import { useState } from 'react';
 import { ImageSearchModal } from './ImageSearchModal';
 
@@ -15,7 +15,7 @@ interface HomeProps {
 
 export function Home({ onDestinationClick, favorites, toggleFavorite, onFavoritesClick, onProfileClick }: HomeProps) {
   const [showImageSearch, setShowImageSearch] = useState(false);
-  
+
   const popularDestinations = [
     {
       id: 1,
@@ -411,7 +411,7 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
 
       {/* Bottom Navigation - Mobile Only */}
       <BottomNav currentView="home" onFavoritesClick={onFavoritesClick} onProfileClick={onProfileClick} />
-      
+
       {/* Image Search Modal */}
       {showImageSearch && (
         <ImageSearchModal onClose={() => setShowImageSearch(false)} />

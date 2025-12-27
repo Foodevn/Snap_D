@@ -1,5 +1,6 @@
 import { Heart, Star } from 'lucide-react';
-import { Destination } from '../App';
+import { Destination } from '../app/page';
+
 
 interface DestinationCardProps {
   destination: Destination;
@@ -10,7 +11,7 @@ interface DestinationCardProps {
 
 export function DestinationCard({ destination, onClick, isFavorite, onToggleFavorite }: DestinationCardProps) {
   return (
-    <div 
+    <div
       className="relative rounded-2xl overflow-hidden cursor-pointer group"
       onClick={onClick}
     >
@@ -19,10 +20,10 @@ export function DestinationCard({ destination, onClick, isFavorite, onToggleFavo
         alt={destination.name}
         className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
       />
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-      
+
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-3 lg:p-4 text-white">
         <div className="flex items-center gap-1 mb-1">
@@ -41,7 +42,7 @@ export function DestinationCard({ destination, onClick, isFavorite, onToggleFavo
         }}
         className="absolute top-3 right-3 w-8 h-8 lg:w-10 lg:h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all hover:scale-110"
       >
-        <Heart 
+        <Heart
           className={`w-4 h-4 lg:w-5 lg:h-5 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}
         />
       </button>

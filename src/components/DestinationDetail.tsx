@@ -1,5 +1,5 @@
 import { ArrowLeft, Heart, MapPin, Star, Wifi, Utensils, Bath, Waves, Flame, Car, Dog, Wine, Users, TreePine, Clock, MessageCircle, Upload, X, Camera, Image, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Destination, MenuItem } from '../App';
+import { Destination } from '../app/page';
 import { useState, useRef } from 'react';
 import { BottomNav } from './BottomNav';
 
@@ -42,12 +42,12 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
   // Collect all images for gallery
   const getAllImages = () => {
     const images: string[] = [destination.image];
-    
+
     // Add menu images if available
     if (destination.menu) {
       destination.menu.forEach(item => images.push(item.image));
     }
-    
+
     // Add review images if available
     if (destination.reviews) {
       destination.reviews.forEach(review => {
@@ -56,7 +56,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
         }
       });
     }
-    
+
     return images;
   };
 
@@ -89,7 +89,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
     <div className="max-w-7xl mx-auto bg-white lg:bg-transparent min-h-screen">
       {/* Image Gallery Modal */}
       {showGallery && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
           onClick={closeGallery}
           onKeyDown={handleKeyDown}
@@ -155,11 +155,10 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                     e.stopPropagation();
                     setCurrentImageIndex(index);
                   }}
-                  className={`flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                    index === currentImageIndex
+                  className={`flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-lg overflow-hidden border-2 transition-all ${index === currentImageIndex
                       ? 'border-[#FAA935] scale-110'
                       : 'border-white/30 hover:border-white/60'
-                  }`}
+                    }`}
                 >
                   <img
                     src={img}
@@ -183,7 +182,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
             className="w-full h-full object-cover rounded-3xl lg:rounded-none cursor-pointer hover:opacity-95 transition-opacity"
             onClick={() => openGallery(0)}
           />
-          
+
           {/* View Gallery Button Overlay */}
           <button
             onClick={() => openGallery(0)}
@@ -192,7 +191,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
             <Image className="w-4 h-4 lg:w-5 lg:h-5" />
             <span className="text-sm lg:text-base">View All Photos ({getAllImages().length})</span>
           </button>
-          
+
           {/* Back Button */}
           <button
             onClick={onBack}
@@ -206,7 +205,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
             onClick={toggleFavorite}
             className="absolute bottom-10 right-10 lg:bottom-6 lg:top-auto lg:right-5 w-12 h-12 lg:w-14 lg:h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
           >
-            <Heart 
+            <Heart
               className={`w-6 h-6 lg:w-7 lg:h-7 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}
             />
           </button>
@@ -234,12 +233,12 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
           {/* Description */}
           <div className="mb-6 lg:mb-8">
             <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
-              {showFullDescription 
-                ? destination.description 
+              {showFullDescription
+                ? destination.description
                 : `${destination.description?.slice(0, 120)}...`
               }
             </p>
-            <button 
+            <button
               onClick={() => setShowFullDescription(!showFullDescription)}
               className="text-sm lg:text-base text-[#FAA935] hover:text-[#E89820] mt-1"
             >
@@ -310,25 +309,23 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                   <div key={index} className="space-y-2">
                     <div className="flex items-center justify-between text-sm lg:text-base">
                       <span className="text-gray-700">{crowd.time}</span>
-                      <span className={`px-3 py-1 rounded-full text-xs lg:text-sm ${
-                        crowd.level === 'low' 
-                          ? 'bg-green-100 text-green-700' 
+                      <span className={`px-3 py-1 rounded-full text-xs lg:text-sm ${crowd.level === 'low'
+                          ? 'bg-green-100 text-green-700'
                           : crowd.level === 'medium'
-                          ? 'bg-yellow-100 text-yellow-700'
-                          : 'bg-red-100 text-red-700'
-                      }`}>
+                            ? 'bg-yellow-100 text-yellow-700'
+                            : 'bg-red-100 text-red-700'
+                        }`}>
                         {crowd.level === 'low' ? 'Quiet' : crowd.level === 'medium' ? 'Moderate' : 'Busy'}
                       </span>
                     </div>
                     <div className="w-full bg-gray-100 rounded-full h-2 lg:h-3 overflow-hidden">
-                      <div 
-                        className={`h-full rounded-full transition-all ${
-                          crowd.level === 'low' 
-                            ? 'bg-green-500' 
+                      <div
+                        className={`h-full rounded-full transition-all ${crowd.level === 'low'
+                            ? 'bg-green-500'
                             : crowd.level === 'medium'
-                            ? 'bg-yellow-500'
-                            : 'bg-red-500'
-                        }`}
+                              ? 'bg-yellow-500'
+                              : 'bg-red-500'
+                          }`}
                         style={{ width: `${crowd.percentage}%` }}
                       />
                     </div>
@@ -379,11 +376,10 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-3 h-3 lg:w-4 lg:h-4 ${
-                                i < review.rating
+                              className={`w-3 h-3 lg:w-4 lg:h-4 ${i < review.rating
                                   ? 'fill-yellow-400 text-yellow-400'
                                   : 'fill-gray-200 text-gray-200'
-                              }`}
+                                }`}
                             />
                           ))}
                         </div>
@@ -446,11 +442,10 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                         className="transition-transform hover:scale-110"
                       >
                         <Star
-                          className={`w-8 h-8 lg:w-10 lg:h-10 cursor-pointer ${
-                            i < newReview.rating
+                          className={`w-8 h-8 lg:w-10 lg:h-10 cursor-pointer ${i < newReview.rating
                               ? 'fill-yellow-400 text-yellow-400'
                               : 'fill-gray-200 text-gray-200'
-                          }`}
+                            }`}
                         />
                       </button>
                     ))}
@@ -509,9 +504,9 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                             className="w-24 h-24 lg:w-32 lg:h-32 rounded-xl object-cover"
                           />
                           <button
-                            onClick={() => setNewReview({ 
-                              ...newReview, 
-                              images: newReview.images.filter((_, i) => i !== index) 
+                            onClick={() => setNewReview({
+                              ...newReview,
+                              images: newReview.images.filter((_, i) => i !== index)
                             })}
                             className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors"
                           >
@@ -586,22 +581,22 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
           </div>
 
           {/* Book Now Button */}
-        <div className="sticky bottom-0 lg:relative bg-white border-t lg:border-0 p-5 lg:p-8 -mx-5 lg:mx-0">
-          <div className="flex items-center gap-4">
-            <div>
-              <p className="text-xs lg:text-sm text-gray-500">
-                {destination.type === 'restaurant' || destination.type === 'cafe' ? 'Average per person' : 'Per night'}
-              </p>
-              <p className="text-2xl lg:text-3xl text-green-500">${destination.price}</p>
+          <div className="sticky bottom-0 lg:relative bg-white border-t lg:border-0 p-5 lg:p-8 -mx-5 lg:mx-0">
+            <div className="flex items-center gap-4">
+              <div>
+                <p className="text-xs lg:text-sm text-gray-500">
+                  {destination.type === 'restaurant' || destination.type === 'cafe' ? 'Average per person' : 'Per night'}
+                </p>
+                <p className="text-2xl lg:text-3xl text-green-500">${destination.price}</p>
+              </div>
+              <button className="flex-1 bg-[#FAA935] text-white py-4 lg:py-5 rounded-2xl flex items-center justify-center gap-2 hover:bg-[#E89820] transition-colors shadow-lg hover:shadow-xl">
+                <span className="lg:text-lg">
+                  {destination.type === 'restaurant' || destination.type === 'cafe' ? 'Reserve Table' : 'Book Now'}
+                </span>
+                <ArrowLeft className="w-5 h-5 lg:w-6 lg:h-6 rotate-180" />
+              </button>
             </div>
-            <button className="flex-1 bg-[#FAA935] text-white py-4 lg:py-5 rounded-2xl flex items-center justify-center gap-2 hover:bg-[#E89820] transition-colors shadow-lg hover:shadow-xl">
-              <span className="lg:text-lg">
-                {destination.type === 'restaurant' || destination.type === 'cafe' ? 'Reserve Table' : 'Book Now'}
-              </span>
-              <ArrowLeft className="w-5 h-5 lg:w-6 lg:h-6 rotate-180" />
-            </button>
           </div>
-        </div>
         </div>
       </div>
       <BottomNav onFavoritesClick={onFavoritesClick} onProfileClick={onProfileClick} onChatBotClick={onChatBotClick} />
