@@ -86,7 +86,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-white lg:bg-transparent min-h-screen">
+    <div className="max-w-7xl mb-10 mx-auto bg-white lg:bg-transparent min-h-screen">
       {/* Image Gallery Modal */}
       {showGallery && (
         <div
@@ -245,6 +245,40 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
               Read {showFullDescription ? 'less' : 'more'}
             </button>
           </div>
+          {/* Additional Info - Check-in/Check-out */}
+          <div className="grid grid-cols-2 gap-3 lg:gap-6 mb-6 lg:mb-8 p-4 lg:p-6 bg-gray-50 rounded-xl lg:rounded-2xl">
+            <div>
+              <p className="text-xs lg:text-sm text-gray-500 mb-1">Check-in</p>
+              <p className="text-sm lg:text-base">After 2:00 PM</p>
+            </div>
+            <div>
+              <p className="text-xs lg:text-sm text-gray-500 mb-1">Check-out</p>
+              <p className="text-sm lg:text-base">Before 12:00 PM</p>
+            </div>
+            <div>
+              <p className="text-xs lg:text-sm text-gray-500 mb-1">Cancellation</p>
+              <p className="text-sm lg:text-base">Free cancellation</p>
+            </div>
+            <div>
+              <p className="text-xs lg:text-sm text-gray-500 mb-1">Max Guests</p>
+              <p className="text-sm lg:text-base">4 people</p>
+            </div>
+          </div>
+
+          <div className="mb-8 lg:mb-12">
+            <h2 className="text-lg lg:text-2xl mb-4 lg:mb-6">Facilities</h2>
+            <div className="grid grid-cols-4 gap-4 lg:gap-6">
+              {destination.facilities?.map((facility) => (
+                <div key={facility} className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-gray-50 lg:w-20 lg:h-20 lg:bg-gray-100 rounded-2xl flex items-center justify-center mb-2 hover:bg-gray-200 transition-colors">
+                    {facilityIcons[facility]}
+                  </div>
+                  <span className="text-xs lg:text-sm text-gray-600">{facility}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
 
           {/* Menu Section - Only for restaurants and cafes */}
           {(destination.type === 'restaurant' || destination.type === 'cafe') && destination.menu && (
@@ -259,7 +293,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                 </button>
               </div>
 
-              <div className={`grid grid-cols-1 gap-4 ${!showMenu ? 'max-h-[400px] overflow-hidden' : ''}`}>
+              <div className={`grid grid-cols-1 gap-4 ${!showMenu ? 'max-h-[410px]  lg:max-h-[520px] overflow-hidden' : ''}`}>
                 {destination.menu.map((item) => (
                   <div key={item.id} className="flex gap-4 p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
                     <img
@@ -282,19 +316,6 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
           )}
 
           {/* Facilities */}
-          <div className="mb-8 lg:mb-12">
-            <h2 className="text-lg lg:text-2xl mb-4 lg:mb-6">Facilities</h2>
-            <div className="grid grid-cols-4 gap-4 lg:gap-6">
-              {destination.facilities?.map((facility) => (
-                <div key={facility} className="flex flex-col items-center">
-                  <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gray-50 rounded-2xl flex items-center justify-center mb-2 hover:bg-gray-100 transition-colors">
-                    {facilityIcons[facility]}
-                  </div>
-                  <span className="text-xs lg:text-sm text-gray-600">{facility}</span>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Crowd Level - Only for restaurants and cafes */}
           {(destination.type === 'restaurant' || destination.type === 'cafe') && destination.crowdLevel && (
@@ -560,25 +581,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
             </button>
           )}
 
-          {/* Additional Info - Desktop Only */}
-          <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 lg:mb-8 lg:p-6 lg:bg-gray-50 lg:rounded-2xl">
-            <div>
-              <p className="text-sm text-gray-500 mb-1">Check-in</p>
-              <p className="text-base">After 2:00 PM</p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 mb-1">Check-out</p>
-              <p className="text-base">Before 12:00 PM</p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 mb-1">Cancellation</p>
-              <p className="text-base">Free cancellation</p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 mb-1">Max Guests</p>
-              <p className="text-base">4 people</p>
-            </div>
-          </div>
+
 
           {/* Book Now Button */}
           {/* <div className="sticky bottom-0 lg:relative bg-white border-t lg:border-0 p-5 lg:p-8 -mx-5 lg:mx-0">
