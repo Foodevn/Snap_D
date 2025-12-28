@@ -1,7 +1,6 @@
 import { X, Camera, Image, Upload, MapPin, Star } from 'lucide-react';
 import { useState, useRef } from 'react';
-import { Destination } from '../app/page';
-
+import { Destination } from "../app/app/page";
 interface ImageSearchModalProps {
   onClose: () => void;
   destinations: Destination[];

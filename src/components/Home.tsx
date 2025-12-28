@@ -1,7 +1,7 @@
 import { MapPin, Search } from 'lucide-react';
 import { DestinationCard } from './DestinationCard';
 import { BottomNav } from './BottomNav';
-import { Destination } from '../app/page';
+import { Destination } from "../app/app/page";
 import { useState } from 'react';
 import { ImageSearchModal } from './ImageSearchModal';
 

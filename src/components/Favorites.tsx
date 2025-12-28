@@ -1,5 +1,5 @@
 import { ArrowLeft, Heart } from 'lucide-react';
-import { Destination } from '../app/page';
+import { Destination } from "../app/app/page";
 import { BottomNav } from './BottomNav';
 
 interface FavoritesProps {

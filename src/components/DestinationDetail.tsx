@@ -1,5 +1,5 @@
 import { ArrowLeft, Heart, MapPin, Star, Wifi, Utensils, Bath, Waves, Flame, Car, Dog, Wine, Users, TreePine, Clock, MessageCircle, Upload, X, Camera, Image, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Destination } from '../app/page';
+import { Destination } from "../app/app/page";
 import { useState, useRef } from 'react';
 import { BottomNav } from './BottomNav';
 
