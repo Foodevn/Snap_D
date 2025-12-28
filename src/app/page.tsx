@@ -16,7 +16,7 @@ export interface Destination {
   rating: number;
   location?: string;
   price?: number;
-  type?: 'hotel' | 'cafe' | 'restaurant';
+  type?: 'hotel' | 'cafe' | 'restaurant' | 'location' | 'adventure';
   description?: string;
   facilities?: string[];
 
