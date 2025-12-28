@@ -21,6 +21,7 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchResults, setSearchResults] = useState<Destination[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>('all');
 
   const popularDestinations: Destination[] = [
     // 1) Hotel
@@ -629,6 +630,11 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 4);
 
+  // Filter destinations based on active tab
+  const filteredDestinations = activeTab === 'all'
+    ? popularDestinations
+    : popularDestinations.filter(dest => dest.type === activeTab);
+
   // Filter suggestions based on search query
   const suggestions = searchQuery.trim()
     ? popularDestinations.filter(dest =>
@@ -868,16 +874,58 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
       {/* Tabs */}
       <div className={`px-5 lg:px-8 mb-6 bg-white lg:bg-transparent ${isSearching ? 'hidden' : ''}`}>
         <div className="flex gap-3 lg:gap-6 pb-2 lg:pb-0 overflow-x-auto scrollbar-hide border-b lg:border-none">
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-[#FAA935] lg:text-white lg:rounded-full text-sm text-[#FAA935] lg:border-0 border-b-2 border-[#FAA935] whitespace-nowrap flex-shrink-0">
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'all'
+                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              }`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => setActiveTab('location')}
+            className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'location'
+                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              }`}
+          >
             Location
           </button>
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
+          <button
+            onClick={() => setActiveTab('hotel')}
+            className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'hotel'
+                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              }`}
+          >
+            Hotel
+          </button>
+          <button
+            onClick={() => setActiveTab('cafe')}
+            className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'cafe'
+                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              }`}
+          >
             Cafe
           </button>
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
+          <button
+            onClick={() => setActiveTab('adventure')}
+            className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'adventure'
+                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              }`}
+          >
             Adventure
           </button>
-          <button className="pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:bg-gray-100 lg:rounded-full text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap flex-shrink-0">
+          <button
+            onClick={() => setActiveTab('restaurant')}
+            className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'restaurant'
+                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              }`}
+          >
             Restaurant
           </button>
         </div>
@@ -886,24 +934,32 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
       {/* Popular Section */}
       <div className={`px-5 lg:px-8 mb-8 ${isSearching ? 'hidden' : ''}`}>
         <div className="flex items-center justify-between mb-4 lg:mb-6">
-          <h2 className="text-lg lg:text-2xl">Popular</h2>
+          <h2 className="text-lg lg:text-2xl">
+            {activeTab === 'all' ? 'Popular' : activeTab.charAt(0).toUpperCase() + activeTab.slice(1) + 's'}
+          </h2>
           <button className="text-sm lg:text-base text-[#FAA935] hover:text-[#E89820]">See all</button>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-          {popularDestinations.map((destination) => (
-            <DestinationCard
-              key={destination.id}
-              destination={destination}
-              onClick={() => onDestinationClick(destination)}
-              isFavorite={favorites.includes(destination.id)}
-              onToggleFavorite={() => toggleFavorite(destination.id)}
-            />
-          ))}
-        </div>
+        {filteredDestinations.length > 0 ? (
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+            {filteredDestinations.map((destination) => (
+              <DestinationCard
+                key={destination.id}
+                destination={destination}
+                onClick={() => onDestinationClick(destination)}
+                isFavorite={favorites.includes(destination.id)}
+                onToggleFavorite={() => toggleFavorite(destination.id)}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-500">Không có địa điểm nào trong danh mục này</p>
+          </div>
+        )}
       </div>
 
       {/* Recommended Section */}
-      <div className={`px-5 lg:px-8 mb-8 ${isSearching ? 'hidden' : ''}`}>
+      <div className={`px-5 lg:px-8 mb-8 ${isSearching || activeTab !== 'all' ? 'hidden' : ''}`}>
         <div className="flex items-center justify-between mb-4 lg:mb-6">
           <h2 className="text-lg lg:text-2xl">Recommended</h2>
         </div>
