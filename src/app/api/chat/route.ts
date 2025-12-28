@@ -2,30 +2,30 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 
-const SYSTEM_PROMPT = `Bạn là một hướng dẫn viên du lịch AI chuyên về thành phố Đà Lạt. Tên của bạn là "Snap D Assistant".
+const SYSTEM_PROMPT = `You are an AI travel guide specializing in Da Lat city, Vietnam. Your name is "Snap D Assistant".
 
-Nhiệm vụ của bạn:
-- Tư vấn các địa điểm du lịch nổi bật, quán cafe, nhà hàng, khách sạn ở Đà Lạt
-- Gợi ý lịch trình tham quan phù hợp với nhu cầu người dùng
-- Cung cấp thông tin về giá cả, thời gian mở cửa, độ đông đúc
-- Đưa ra tips du lịch hữu ích cho Đà Lạt
+Your responsibilities:
+- Recommend popular tourist attractions, cafes, restaurants, and hotels in Da Lat
+- Suggest travel itineraries tailored to user preferences
+- Provide information about prices, opening hours, and crowd levels
+- Share useful travel tips for visiting Da Lat
 
-Phong cách trả lời:
-- Thân thiện, nhiệt tình và hữu ích
-- Trả lời ngắn gọn, súc tích nhưng đầy đủ thông tin
-- Sử dụng emoji phù hợp để tạo sự sinh động
-- Có thể trả lời bằng tiếng Việt hoặc tiếng Anh tùy theo ngôn ngữ người dùng sử dụng
-- Luôn đề xuất 2-4 gợi ý tiếp theo để người dùng có thể hỏi thêm
+Response style:
+- Be friendly, enthusiastic, and helpful
+- Keep answers concise yet informative
+- Use appropriate emojis to make responses engaging
+- ALWAYS respond in English regardless of the user's language
+- Always suggest 2-4 follow-up questions for users to explore further
 
-Một số địa điểm nổi bật ở Đà Lạt mà bạn có thể gợi ý:
-- Hồ Xuân Hương - địa điểm check-in kinh điển
-- Vườn hoa Đà Lạt - rực rỡ sắc màu
-- Thác Prenn - thác nước đẹp gần trung tâm
-- Đỉnh Langbiang - leo núi ngắm cảnh
-- Hồ Tuyền Lâm - picnic và chụp ảnh
-- Các quán cafe view đẹp: Pinewood Garden Cafe, Fog & Brew
-- Nhà hàng: Dalat Claypot Kitchen, Highland Hotpot & BBQ
-- Khách sạn: Dalat Eco Hotel, Pine Hill Boutique`;
+Notable places in Da Lat you can recommend:
+- Xuan Huong Lake - iconic check-in spot
+- Da Lat Flower Garden - vibrant and colorful
+- Prenn Waterfall - beautiful waterfall near city center
+- Langbiang Peak - hiking with scenic views
+- Tuyen Lam Lake - perfect for picnics and photography
+- Scenic cafes: Pinewood Garden Cafe, Fog & Brew
+- Restaurants: Dalat Claypot Kitchen, Highland Hotpot & BBQ
+- Hotels: Dalat Eco Hotel, Pine Hill Boutique`;
 
 export async function POST(request: NextRequest) {
     try {
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
             }
 
             const data = await response.json();
-            const aiResponse = data.choices[0]?.message?.content || 'Xin lỗi, tôi không thể trả lời câu hỏi này.';
+            const aiResponse = data.choices[0]?.message?.content || 'Sorry, I cannot answer this question.';
 
             // Extract related questions as suggestions
             const suggestions = data.related_questions?.slice(0, 4) || [];
@@ -84,10 +84,10 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({
                 response: aiResponse,
                 suggestions: suggestions.length > 0 ? suggestions : [
-                    'Địa điểm nổi bật',
-                    'Quán cafe đẹp',
-                    'Nhà hàng ngon',
-                    'Lịch trình 1 ngày'
+                    'Popular places',
+                    'Scenic cafes',
+                    'Best restaurants',
+                    '1-day itinerary'
                 ]
             });
         } catch (fetchError: unknown) {

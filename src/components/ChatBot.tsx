@@ -24,9 +24,9 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
     {
       id: 1,
       type: 'bot',
-      text: 'Xin chào! 👋 Tôi là trợ lý du lịch AI của Snap D. Tôi có thể giúp bạn tìm những địa điểm tuyệt vời ở Đà Lạt - từ quán cafe view đẹp, nhà hàng ngon đến các điểm tham quan nổi bật. Bạn muốn khám phá gì hôm nay?',
+      text: 'Hello! 👋 I\'m Snap D\'s AI travel assistant. I can help you find amazing places in Da Lat - from scenic cafes, delicious restaurants to popular attractions. What would you like to explore today?',
       timestamp: new Date(),
-      suggestions: ['Địa điểm nổi bật Đà Lạt', 'Quán cafe view đẹp', 'Nhà hàng ngon', 'Lịch trình 1 ngày']
+      suggestions: ['Popular places in Da Lat', 'Scenic cafes', 'Best restaurants', '1-day itinerary']
     }
   ]);
   const [inputText, setInputText] = useState('');
@@ -68,8 +68,8 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
     } catch (error) {
       console.error('Error calling chat API:', error);
       return {
-        text: 'Xin lỗi, tôi đang gặp sự cố kết nối. Vui lòng thử lại sau! 🙏',
-        suggestions: ['Thử lại', 'Địa điểm nổi bật', 'Quán cafe', 'Nhà hàng']
+        text: 'Sorry, I\'m having connection issues. Please try again later! 🙏',
+        suggestions: ['Try again', 'Popular places', 'Cafes', 'Restaurants']
       };
     }
   };
@@ -139,7 +139,7 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
           </div>
         </div>
         <p className="text-sm text-white/90">
-          Hỏi tôi bất cứ điều gì về Đà Lạt - nhà hàng, khách sạn, hoạt động, hoặc lập kế hoạch cho chuyến đi hoàn hảo của bạn! 🌟
+          Ask me anything about Da Lat - restaurants, hotels, activities, or plan your perfect trip! 🌟
         </p>
       </div>
 
@@ -222,27 +222,27 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
       </div>
 
       {/* Quick Actions - Desktop Only */}
-      <div className="hidden lg:flex gap-3 px-8 py-4">
+      <div className="hidden lg:flex gap-4 px-52 py-4">
         <button
-          onClick={() => handleQuickAction('Địa điểm nổi bật gần đây ở Đà Lạt')}
+          onClick={() => handleQuickAction('Popular places in Da Lat')}
           className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm"
         >
           <MapPin className="w-4 h-4 text-[#FAA935]" />
-          <span>Địa điểm nổi bật</span>
+          <span>Popular Places</span>
         </button>
         <button
-          onClick={() => handleQuickAction('Lịch trình tham quan Đà Lạt 1 ngày')}
+          onClick={() => handleQuickAction('1-day Da Lat travel itinerary')}
           className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm"
         >
           <Clock className="w-4 h-4 text-[#FAA935]" />
-          <span>Lập lịch trình</span>
+          <span>Plan Itinerary</span>
         </button>
         <button
-          onClick={() => handleQuickAction('Du lịch Đà Lạt tiết kiệm, giá rẻ')}
+          onClick={() => handleQuickAction('Budget-friendly Da Lat travel tips')}
           className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm"
         >
           <DollarSign className="w-4 h-4 text-[#FAA935]" />
-          <span>Tips tiết kiệm</span>
+          <span>Budget Tips</span>
         </button>
       </div>
 
@@ -256,7 +256,7 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Hỏi tôi về Đà Lạt..."
+              placeholder="Ask me about Da Lat..."
               disabled={isTyping}
               className="w-full pl-4 pr-12 py-3 lg:py-4 bg-gray-100 lg:bg-white lg:border lg:border-gray-200 rounded-full text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-[#FAA935]/20 disabled:opacity-50"
             />
