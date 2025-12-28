@@ -1,5 +1,5 @@
 import { Heart, Star } from 'lucide-react';
-import { Destination } from '../app/page';
+import { Destination } from "../app/app/page";
 
 
 interface DestinationCardProps {

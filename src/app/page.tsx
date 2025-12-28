@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from 'react';
-import { LoginPage } from '../pages/LoginPage';
-import { ToursPage } from '../pages/ToursPage';
-import { HomePage } from '../pages/HomePage';
-import { AboutPage } from '../pages/AboutPage';
+import { LoginPage } from '../Trang/LoginPage';
+import { ToursPage } from '../Trang/ToursPage';
+import { HomePage } from '../Trang/HomePage';
+import { AboutPage } from '../Trang/AboutPage';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
