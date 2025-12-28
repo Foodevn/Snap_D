@@ -227,7 +227,13 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                 <span>{destination.location}</span>
               </div>
             </div>
-            <button className="text-sm lg:text-base text-[#FAA935] hover:text-[#E89820] whitespace-nowrap">
+            <button
+              onClick={() => {
+                const query = encodeURIComponent(`${destination.name}, ${destination.location}`);
+                window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
+              }}
+              className="text-sm lg:text-base text-[#FAA935] hover:text-[#E89820] whitespace-nowrap"
+            >
               Show map
             </button>
           </div>
