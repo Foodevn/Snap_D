@@ -1,71 +1,87 @@
-import React, { useState } from 'react';
-import { Search, Sun, Sparkles, Camera } from 'lucide-react';
+import React from 'react';
+import { MapPin, MessageCircle, Gift, Camera, Search, Heart } from 'lucide-react';
 import { SubscribeSection } from '../components/SubscribeSection';
 
 export function HomePage() {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Search:', searchQuery);
-  };
-
   const services = [
     {
-      icon: <Sun size={32} />,
-      title: 'Sun-Chaser',
-      description: 'Real-time Golden Hour Guide',
-    },
-    {
-      icon: <Sparkles size={32} />,
-      title: 'Random Quest',
-      description: 'Hidden Gems Cards for Local College Students',
+      icon: <Search size={32} />,
+      title: 'Smart Search',
+      description: 'Find hotels, cafes & restaurants with AI-powered recommendations',
     },
     {
       icon: <Camera size={32} />,
-      title: 'Natural Mood',
-      description: 'Natural lit shots without artificial guides',
+      title: 'Image Search',
+      description: 'Upload a photo and discover matching destinations instantly',
+    },
+    {
+      icon: <MessageCircle size={32} />,
+      title: 'AI Assistant',
+      description: 'Chat with our travel bot for personalized Da Lat suggestions',
+    },
+    {
+      icon: <Gift size={32} />,
+      title: 'Lucky Draw',
+      description: 'Spin the wheel daily for exclusive restaurant vouchers',
+    },
+    {
+      icon: <Heart size={32} />,
+      title: 'Favorites',
+      description: 'Save and organize your must-visit places in one place',
+    },
+    {
+      icon: <MapPin size={32} />,
+      title: 'Local Insights',
+      description: 'Real crowd levels, menus & reviews from local travelers',
     },
   ];
 
   const featuredImages = [
-    'https://images.unsplash.com/photo-1697850085870-5f248fcb1ff2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYWxhdCUyMHZpZXRuYW0lMjBsYW5kc2NhcGUlMjBnb2xkZW4lMjBob3VyfGVufDF8fHx8MTc2NjkyMDQyNXww&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1682416480878-cfe14c646c6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2aWV0bmFtJTIwbmF0dXJlJTIwcGhvdG9ncmFwaHl8ZW58MXx8fHwxNzY2OTIwNDI1fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1635658000439-2eb70e3fc6a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMHN1bnNldCUyMHRyYXZlbHxlbnwxfHx8fDE3NjY5MjA0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
   ];
 
   const galleryImages = [
     {
-      url: 'https://images.unsplash.com/photo-1664029934400-b7bb1f5744e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGhpa2luZyUyMHNub3d8ZW58MXx8fHwxNzY2OTIxNTI2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80',
       gridClass: 'col-span-2 row-span-2',
+      label: 'Hotels',
     },
     {
-      url: 'https://images.unsplash.com/photo-1728466698701-2eb2af4117d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYW11a2thbGUlMjB0dXJrZXklMjB0cmF2ZXJ0aW5lfGVufDF8fHx8MTc2NjkyMTUyN3ww&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80',
       gridClass: 'col-span-1 row-span-1',
+      label: 'Cafes',
     },
     {
-      url: 'https://images.unsplash.com/photo-1762723111768-8c2ff4630e85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2VuaWMlMjB2aWV3cG9pbnQlMjBiZW5jaHxlbnwxfHx8fDE3NjY5MjE1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
       gridClass: 'col-span-1 row-span-1',
+      label: 'Restaurants',
     },
     {
-      url: 'https://images.unsplash.com/photo-1765854160365-fd56c052e5ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cm9waWNhbCUyMGJlYWNoJTIwcGFsbXxlbnwxfHx8fDE3NjY5MjE1Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
       gridClass: 'col-span-1 row-span-1',
+      label: 'Boutique Stay',
     },
     {
-      url: 'https://images.unsplash.com/photo-1637576308588-6647bf80944d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWxkaXZlcyUyMG92ZXJ3YXRlciUyMGJ1bmdhbG93fGVufDF8fHx8MTc2NjkyMTUyOHww&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80',
       gridClass: 'col-span-1 row-span-1',
+      label: 'Coffee',
     },
     {
-      url: 'https://images.unsplash.com/photo-1764753318064-89b67a18d91f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW1lc3RvbmUlMjBjbGlmZnMlMjBib2F0fGVufDF8fHx8MTc2NjkyMTUyOXww&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80',
       gridClass: 'col-span-2 row-span-1',
+      label: 'Fine Dining',
     },
     {
-      url: 'https://images.unsplash.com/photo-1630839625742-fbb52bf31f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXRoZWRyYWwlMjBhcmNoaXRlY3R1cmUlMjBldXJvcGV8ZW58MXx8fHwxNzY2OTIxNTMwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
       gridClass: 'col-span-1 row-span-1',
+      label: 'Resort',
     },
     {
-      url: 'https://images.unsplash.com/photo-1763401190078-6e15b59ae2bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW1lc3RvbmUlMjBrYXJzdCUyMGxhZ29vbnxlbnwxfHx8fDE3NjY5MjE1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80',
       gridClass: 'col-span-1 row-span-1',
+      label: 'Cozy Spot',
     },
   ];
 
@@ -78,38 +94,29 @@ export function HomePage() {
           <div className="space-y-6">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-orange-400 text-black px-4 py-2 rounded-full">
-              <span className="text-sm sm:text-base">Cinematic Da Lat</span>
-              <span className="text-lg">🌏</span>
+              <span className="text-sm sm:text-base">Discover Da Lat</span>
+              <span className="text-lg">🏔️</span>
             </div>
 
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl">
-              Chasing the Light,<br />
-              Finding the <span className="italic">Hidden Gem</span>
+              Explore Da Lat,<br />
+              Your <span className="italic">Perfect Way</span>
             </h1>
 
             {/* Description */}
             <p className="text-gray-600 text-base sm:text-lg max-w-lg">
-              We analyze Dalat's topography and sunlight to determine the perfect time to capture your perfect photo. Start your cinematic journey today.
+              Discover the best hotels, cafes, and restaurants in Da Lat. Get AI-powered recommendations, spin for vouchers, and save your favorite spots all in one app.
             </p>
 
-            {/* Search Bar */}
-            <form onSubmit={handleSearch} className="flex gap-2 max-w-xl">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for destinations..."
-                className="flex-1 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base border border-gray-200 rounded-full focus:outline-none focus:border-orange-400 shadow-sm"
-              />
-              <button
-                type="submit"
-                className="bg-orange-400 text-white p-3 sm:p-4 rounded-full hover:bg-orange-500 transition-colors shadow-md"
-                aria-label="Search"
-              >
-                <Search size={20} />
-              </button>
-            </form>
+            {/* CTA Button */}
+            <a
+              href="/app"
+              className="inline-flex items-center gap-2 bg-orange-400 text-white px-8 py-4 rounded-full hover:bg-orange-500 transition-colors shadow-md text-lg font-medium"
+            >
+              Get Started
+              <span>→</span>
+            </a>
           </div>
 
           {/* Right Content - Image Cards */}
@@ -137,17 +144,17 @@ export function HomePage() {
             </div>
           </div>
 
-          
+
         </div>
       </div>
 
       {/* Services Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-8 sm:mb-12">
-          We offer our best <span className="italic">services</span>
+          Everything you need to <span className="italic">explore</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
@@ -173,10 +180,10 @@ export function HomePage() {
           {/* Gallery Header */}
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 bg-orange-400 text-black px-4 py-2 rounded-full">
-              <span className="text-sm sm:text-base">Gallery</span>
+              <span className="text-sm sm:text-base">Featured Places</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl">
-              Visit our customers tour gallery
+              Popular destinations in Da Lat
             </h2>
           </div>
 
@@ -185,13 +192,16 @@ export function HomePage() {
             {galleryImages.map((image, index) => (
               <div
                 key={index}
-                className={`${image.gridClass} overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer`}
+                className={`${image.gridClass} overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer relative group`}
               >
                 <img
                   src={image.url}
-                  alt={`Gallery ${index + 1}`}
+                  alt={image.label}
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="text-white font-medium">{image.label}</span>
+                </div>
               </div>
             ))}
           </div>
