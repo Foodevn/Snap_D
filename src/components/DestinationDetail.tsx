@@ -21,6 +21,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [newReview, setNewReview] = useState({ rating: 5, comment: '', images: [] as string[] });
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [localReviews, setLocalReviews] = useState(destination.reviews || []);
   const [showGallery, setShowGallery] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [galleryImages, setGalleryImages] = useState<string[]>([]);
@@ -369,15 +370,15 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
           )}
 
           {/* Reviews Section */}
-          {destination.reviews && destination.reviews.length > 0 && (
+          {localReviews && localReviews.length > 0 && (
             <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm mb-6">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
                   <MessageCircle className="w-5 h-5 lg:w-6 lg:h-6 text-[#FAA935]" />
                   <h2 className="text-xl lg:text-2xl">Reviews</h2>
-                  <span className="text-sm lg:text-base text-gray-500">({destination.reviews.length})</span>
+                  <span className="text-sm lg:text-base text-gray-500">({localReviews.length})</span>
                 </div>
-                {destination.reviews.length > 2 && (
+                {localReviews.length > 2 && (
                   <button
                     onClick={() => setShowAllReviews(!showAllReviews)}
                     className="text-sm lg:text-base text-[#FAA935] hover:text-[#E89820]"
@@ -388,7 +389,7 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
               </div>
 
               <div className="space-y-6">
-                {(showAllReviews ? destination.reviews : destination.reviews.slice(0, 2)).map((review) => (
+                {(showAllReviews ? localReviews : localReviews.slice(0, 2)).map((review) => (
                   <div key={review.id} className="pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                     <div className="flex items-start gap-4 mb-3">
                       <img
@@ -551,7 +552,16 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
                 <button
                   onClick={() => {
                     if (newReview.comment.trim()) {
-                      alert(`Review submitted!\nRating: ${newReview.rating} stars\nComment: ${newReview.comment}\nPhotos: ${newReview.images.length}`);
+                      const newReviewData = {
+                        id: Date.now(),
+                        userName: 'You',
+                        userAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=user',
+                        rating: newReview.rating,
+                        comment: newReview.comment,
+                        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+                        images: newReview.images
+                      };
+                      setLocalReviews([newReviewData, ...localReviews]);
                       setShowReviewForm(false);
                       setNewReview({ rating: 5, comment: '', images: [] });
                     } else {
