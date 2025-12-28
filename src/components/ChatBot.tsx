@@ -1,6 +1,7 @@
-import { Send, Bot, User, Sparkles, MapPin, Clock, DollarSign } from 'lucide-react';
+import { Send, Bot, User, Sparkles, MapPin, Clock, DollarSign, AlertCircle } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { BottomNav } from './BottomNav';
+import ReactMarkdown from 'react-markdown';
 
 interface ChatBotProps {
   onFavoritesClick: () => void;
@@ -15,6 +16,7 @@ interface Message {
   text: string;
   timestamp: Date;
   suggestions?: string[];
+  isError?: boolean;
 }
 
 export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLuckyDrawClick }: ChatBotProps) {
@@ -22,9 +24,9 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
     {
       id: 1,
       type: 'bot',
-      text: 'Hello! 👋 I\'m your travel assistant for Dalat. I can help you find the perfect destinations, recommend restaurants, or plan your itinerary. What would you like to explore today?',
+      text: 'Xin chào! 👋 Tôi là trợ lý du lịch AI của Snap D. Tôi có thể giúp bạn tìm những địa điểm tuyệt vời ở Đà Lạt - từ quán cafe view đẹp, nhà hàng ngon đến các điểm tham quan nổi bật. Bạn muốn khám phá gì hôm nay?',
       timestamp: new Date(),
-      suggestions: ['Find cafes nearby', 'Best restaurants', 'Plan a day trip', 'Budget-friendly hotels']
+      suggestions: ['Địa điểm nổi bật Đà Lạt', 'Quán cafe view đẹp', 'Nhà hàng ngon', 'Lịch trình 1 ngày']
     }
   ]);
   const [inputText, setInputText] = useState('');
@@ -40,60 +42,48 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
     scrollToBottom();
   }, [messages]);
 
-  const getBotResponse = (userMessage: string): { text: string; suggestions?: string[] } => {
-    const lowerMessage = userMessage.toLowerCase();
+  const sendMessageToAPI = async (userMessage: string): Promise<{ text: string; suggestions?: string[] }> => {
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: userMessage
+        })
+      });
 
-    if (lowerMessage.includes('cafe') || lowerMessage.includes('coffee')) {
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error('API Error:', data);
+        throw new Error(data.error || 'Failed to get response');
+      }
+
       return {
-        text: 'Great choice! ☕ I recommend **The Garden Cafe** - it\'s a cozy spot with amazing Vietnamese coffee and beautiful outdoor seating. They\'re usually quiet between 4-6 PM. Would you like directions or see the menu?',
-        suggestions: ['Show menu', 'Get directions', 'See photos', 'Other cafes']
+        text: data.response,
+        suggestions: data.suggestions
       };
-    } else if (lowerMessage.includes('restaurant') || lowerMessage.includes('food')) {
+    } catch (error) {
+      console.error('Error calling chat API:', error);
       return {
-        text: 'I\'d love to help you find a great place to eat! 🍽️ **La Terrasse Restaurant** offers authentic Vietnamese cuisine with a modern twist. It\'s best to visit between 3-5 PM to avoid crowds. Average price is $45 per person. Interested?',
-        suggestions: ['View details', 'See menu', 'Book a table', 'Other options']
-      };
-    } else if (lowerMessage.includes('hotel') || lowerMessage.includes('stay')) {
-      return {
-        text: 'Looking for accommodation? 🏨 I have some excellent options:\n\n**Alley Palace** - $199/night, historic building with stunning views\n**Coeurdes Alpes** - $199/night, alpine-style luxury\n\nBoth have heaters, pools, and great dining. Which one interests you?',
-        suggestions: ['Alley Palace details', 'Coeurdes Alpes details', 'Budget options', 'Compare all']
-      };
-    } else if (lowerMessage.includes('budget') || lowerMessage.includes('cheap')) {
-      return {
-        text: '💰 Looking for budget-friendly options? The Garden Cafe is great at $25 per visit, and I can help you find affordable guesthouses starting from $50/night. What\'s your budget range?',
-        suggestions: ['Under $50', '$50-$100', '$100-$200', 'Show all']
-      };
-    } else if (lowerMessage.includes('plan') || lowerMessage.includes('itinerary')) {
-      return {
-        text: '📅 Let me help you plan an amazing day in Dalat!\n\n**Morning (8-11 AM)**: Start with breakfast at The Garden Cafe\n**Lunch (12-2 PM)**: Try La Terrasse Restaurant\n**Afternoon (3-6 PM)**: Explore local attractions\n**Evening (7 PM+)**: Dinner and city walk\n\nWould you like more details for any part?',
-        suggestions: ['Morning activities', 'Lunch spots', 'Evening plans', 'Full itinerary']
-      };
-    } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
-      return {
-        text: 'Hello there! 😊 Welcome to SNAP DL! How can I make your Dalat experience unforgettable today?',
-        suggestions: ['Find cafes', 'Best restaurants', 'Hotels', 'Plan my day']
-      };
-    } else if (lowerMessage.includes('thanks') || lowerMessage.includes('thank')) {
-      return {
-        text: 'You\'re very welcome! 🙏 Is there anything else you\'d like to know about Dalat? I\'m here to help!',
-        suggestions: ['Find more places', 'Plan itinerary', 'Budget tips', 'Local tips']
-      };
-    } else {
-      return {
-        text: 'I can help you discover amazing places in Dalat! I can recommend:\n\n✨ Cafes and restaurants\n🏨 Hotels and accommodations\n🗺️ Attractions and activities\n📋 Custom itineraries\n\nWhat interests you most?',
-        suggestions: ['Show cafes', 'Show restaurants', 'Show hotels', 'Create itinerary']
+        text: 'Xin lỗi, tôi đang gặp sự cố kết nối. Vui lòng thử lại sau! 🙏',
+        suggestions: ['Thử lại', 'Địa điểm nổi bật', 'Quán cafe', 'Nhà hàng']
       };
     }
   };
 
-  const handleSend = () => {
-    if (inputText.trim() === '') return;
+  const handleSend = async () => {
+    if (inputText.trim() === '' || isTyping) return;
+
+    const userMessageText = inputText;
 
     // Add user message
     const userMessage: Message = {
       id: messages.length + 1,
       type: 'user',
-      text: inputText,
+      text: userMessageText,
       timestamp: new Date()
     };
 
@@ -101,20 +91,19 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
     setInputText('');
     setIsTyping(true);
 
-    // Simulate bot typing and response
-    setTimeout(() => {
-      const botResponseData = getBotResponse(inputText);
-      const botMessage: Message = {
-        id: messages.length + 2,
-        type: 'bot',
-        text: botResponseData.text,
-        timestamp: new Date(),
-        suggestions: botResponseData.suggestions
-      };
+    // Call API
+    const botResponseData = await sendMessageToAPI(userMessageText);
 
-      setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 1500);
+    const botMessage: Message = {
+      id: messages.length + 2,
+      type: 'bot',
+      text: botResponseData.text,
+      timestamp: new Date(),
+      suggestions: botResponseData.suggestions
+    };
+
+    setMessages(prev => [...prev, botMessage]);
+    setIsTyping(false);
   };
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -123,9 +112,14 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !isTyping) {
       handleSend();
     }
+  };
+
+  const handleQuickAction = (action: string) => {
+    setInputText(action);
+    inputRef.current?.focus();
   };
 
   return (
@@ -145,7 +139,7 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
           </div>
         </div>
         <p className="text-sm text-white/90">
-          Ask me anything about Dalat - restaurants, hotels, activities, or planning your perfect trip! 🌟
+          Hỏi tôi bất cứ điều gì về Đà Lạt - nhà hàng, khách sạn, hoạt động, hoặc lập kế hoạch cho chuyến đi hoàn hảo của bạn! 🌟
         </p>
       </div>
 
@@ -161,9 +155,11 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
                   </div>
                   <div className="flex-1">
                     <div className="bg-gray-100 rounded-2xl rounded-tl-none px-4 py-3 inline-block max-w-[85%]">
-                      <p className="text-sm lg:text-base text-gray-800 whitespace-pre-line">
-                        {message.text}
-                      </p>
+                      <div className="text-sm lg:text-base text-gray-800 prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-li:my-0 prose-headings:my-2 prose-strong:text-gray-900">
+                        <ReactMarkdown>
+                          {message.text}
+                        </ReactMarkdown>
+                      </div>
                     </div>
                     <p className="text-xs text-gray-400 mt-1 ml-1">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -227,17 +223,26 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
 
       {/* Quick Actions - Desktop Only */}
       <div className="hidden lg:flex gap-3 px-8 py-4">
-        <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm">
+        <button
+          onClick={() => handleQuickAction('Địa điểm nổi bật gần đây ở Đà Lạt')}
+          className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm"
+        >
           <MapPin className="w-4 h-4 text-[#FAA935]" />
-          <span>Nearby Places</span>
+          <span>Địa điểm nổi bật</span>
         </button>
-        <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm">
+        <button
+          onClick={() => handleQuickAction('Lịch trình tham quan Đà Lạt 1 ngày')}
+          className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm"
+        >
           <Clock className="w-4 h-4 text-[#FAA935]" />
-          <span>Plan Itinerary</span>
+          <span>Lập lịch trình</span>
         </button>
-        <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm">
+        <button
+          onClick={() => handleQuickAction('Du lịch Đà Lạt tiết kiệm, giá rẻ')}
+          className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm"
+        >
           <DollarSign className="w-4 h-4 text-[#FAA935]" />
-          <span>Budget Tips</span>
+          <span>Tips tiết kiệm</span>
         </button>
       </div>
 
@@ -251,8 +256,9 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask me anything about Dalat..."
-              className="w-full pl-4 pr-12 py-3 lg:py-4 bg-gray-100 lg:bg-white lg:border lg:border-gray-200 rounded-full text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-[#FAA935]/20"
+              placeholder="Hỏi tôi về Đà Lạt..."
+              disabled={isTyping}
+              className="w-full pl-4 pr-12 py-3 lg:py-4 bg-gray-100 lg:bg-white lg:border lg:border-gray-200 rounded-full text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-[#FAA935]/20 disabled:opacity-50"
             />
             <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
               <Sparkles className="w-4 h-4 text-gray-600" />
@@ -260,7 +266,7 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLucky
           </div>
           <button
             onClick={handleSend}
-            disabled={inputText.trim() === ''}
+            disabled={inputText.trim() === '' || isTyping}
             className="w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-r from-[#FAA935] to-[#E89820] rounded-full flex items-center justify-center hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
           >
             <Send className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
