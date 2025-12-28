@@ -877,8 +877,8 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
           <button
             onClick={() => setActiveTab('all')}
             className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'all'
-                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
-                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+              : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
               }`}
           >
             All
@@ -886,8 +886,8 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
           <button
             onClick={() => setActiveTab('location')}
             className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'location'
-                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
-                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+              : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
               }`}
           >
             Location
@@ -895,8 +895,8 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
           <button
             onClick={() => setActiveTab('hotel')}
             className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'hotel'
-                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
-                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+              : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
               }`}
           >
             Hotel
@@ -904,8 +904,8 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
           <button
             onClick={() => setActiveTab('cafe')}
             className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'cafe'
-                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
-                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+              : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
               }`}
           >
             Cafe
@@ -913,8 +913,8 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
           <button
             onClick={() => setActiveTab('adventure')}
             className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'adventure'
-                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
-                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+              : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
               }`}
           >
             Adventure
@@ -922,8 +922,8 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
           <button
             onClick={() => setActiveTab('restaurant')}
             className={`pb-2 lg:pb-3 lg:px-6 lg:py-2 lg:rounded-full text-sm whitespace-nowrap shrink-0 transition-colors ${activeTab === 'restaurant'
-                ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
-                : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
+              ? 'text-[#FAA935] border-b-2 border-[#FAA935] lg:border-0 lg:bg-[#FAA935] lg:text-white'
+              : 'text-gray-500 hover:text-gray-700 lg:bg-gray-100'
               }`}
           >
             Restaurant
@@ -987,7 +987,11 @@ export function Home({ onDestinationClick, favorites, toggleFavorite, onFavorite
 
       {/* Image Search Modal */}
       {showImageSearch && (
-        <ImageSearchModal onClose={() => setShowImageSearch(false)} />
+        <ImageSearchModal
+          onClose={() => setShowImageSearch(false)}
+          destinations={popularDestinations}
+          onDestinationClick={onDestinationClick}
+        />
       )}
     </div>
   );
