@@ -6,6 +6,7 @@ interface ChatBotProps {
   onFavoritesClick: () => void;
   onProfileClick: () => void;
   onHomeClick: () => void;
+  onLuckyDrawClick: () => void;
 }
 
 interface Message {
@@ -16,7 +17,7 @@ interface Message {
   suggestions?: string[];
 }
 
-export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick }: ChatBotProps) {
+export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick, onLuckyDrawClick }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -41,7 +42,7 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick }: ChatB
 
   const getBotResponse = (userMessage: string): { text: string; suggestions?: string[] } => {
     const lowerMessage = userMessage.toLowerCase();
-    
+
     if (lowerMessage.includes('cafe') || lowerMessage.includes('coffee')) {
       return {
         text: 'Great choice! ☕ I recommend **The Garden Cafe** - it\'s a cozy spot with amazing Vietnamese coffee and beautiful outdoor seating. They\'re usually quiet between 4-6 PM. Would you like directions or see the menu?',
@@ -268,12 +269,13 @@ export function ChatBot({ onFavoritesClick, onProfileClick, onHomeClick }: ChatB
       </div>
 
       {/* Bottom Navigation - Mobile Only */}
-      <BottomNav 
-        currentView="chatbot" 
+      <BottomNav
+        currentView="chatbot"
         onHomeClick={onHomeClick}
-        onFavoritesClick={onFavoritesClick} 
+        onFavoritesClick={onFavoritesClick}
         onProfileClick={onProfileClick}
-        onChatBotClick={() => {}}
+        onChatBotClick={() => { }}
+        onLuckyDrawClick={onLuckyDrawClick}
       />
     </div>
   );

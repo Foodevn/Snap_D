@@ -6,9 +6,10 @@ interface ProfileProps {
   favoritesCount: number;
   onFavoritesClick: () => void;
   onChatBotClick: () => void;
+  onLuckyDrawClick: () => void;
 }
 
-export function Profile({ onBackToHome, favoritesCount, onFavoritesClick, onChatBotClick }: ProfileProps) {
+export function Profile({ onBackToHome, favoritesCount, onFavoritesClick, onChatBotClick, onLuckyDrawClick }: ProfileProps) {
   return (
     <div className="max-w-7xl mx-auto bg-white lg:bg-transparent min-h-screen pb-20 lg:pb-8">
       {/* Header */}
@@ -168,6 +169,7 @@ export function Profile({ onBackToHome, favoritesCount, onFavoritesClick, onChat
         onHomeClick={onBackToHome}
         onFavoritesClick={onFavoritesClick}
         onChatBotClick={onChatBotClick}
+        onLuckyDrawClick={onLuckyDrawClick}
       />
     </div>
   );

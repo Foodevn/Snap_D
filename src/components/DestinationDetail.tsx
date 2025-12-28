@@ -11,9 +11,11 @@ interface DestinationDetailProps {
   onFavoritesClick: () => void;
   onProfileClick: () => void;
   onChatBotClick: () => void;
+  onLuckyDrawClick: () => void;
+  onBackToHome: () => void;
 }
 
-export function DestinationDetail({ destination, onBack, isFavorite, toggleFavorite, onFavoritesClick, onProfileClick, onChatBotClick }: DestinationDetailProps) {
+export function DestinationDetail({ destination, onBack, isFavorite, toggleFavorite, onBackToHome, onFavoritesClick, onProfileClick, onChatBotClick, onLuckyDrawClick }: DestinationDetailProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showAllReviews, setShowAllReviews] = useState(false);
@@ -604,7 +606,13 @@ export function DestinationDetail({ destination, onBack, isFavorite, toggleFavor
         <div className='mb-10'></div>
       </div>
 
-      <BottomNav onFavoritesClick={onFavoritesClick} onProfileClick={onProfileClick} onChatBotClick={onChatBotClick} />
+      <BottomNav
+        onHomeClick={onBackToHome}
+        onFavoritesClick={onFavoritesClick}
+        onProfileClick={onProfileClick}
+        onChatBotClick={onChatBotClick}
+        onLuckyDrawClick={onLuckyDrawClick}
+      />
     </div>
   );
 }

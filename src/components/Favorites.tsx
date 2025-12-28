@@ -9,9 +9,10 @@ interface FavoritesProps {
   onBackToHome: () => void;
   onProfileClick: () => void;
   onChatBotClick: () => void;
+  onLuckyDrawClick: () => void;
 }
 
-export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBackToHome, onProfileClick, onChatBotClick }: FavoritesProps) {
+export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBackToHome, onProfileClick, onChatBotClick, onLuckyDrawClick }: FavoritesProps) {
   // All destinations data
   const allDestinations: Destination[] = [
     {
@@ -150,6 +151,7 @@ export function Favorites({ favorites, onDestinationClick, toggleFavorite, onBac
         onHomeClick={onBackToHome}
         onProfileClick={onProfileClick}
         onChatBotClick={onChatBotClick}
+        onLuckyDrawClick={onLuckyDrawClick}
       />
     </div>
   );

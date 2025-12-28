@@ -6,6 +6,7 @@ import { DestinationDetail } from '../components/DestinationDetail';
 import { Favorites } from '../components/Favorites';
 import { Profile } from '../components/Profile';
 import { ChatBot } from '../components/ChatBot';
+import { LuckyDraw } from '../components/LuckyDraw';
 
 
 export interface Destination {
@@ -46,7 +47,7 @@ export interface Destination {
 }
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'detail' | 'favorites' | 'profile' | 'chatbot'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'detail' | 'favorites' | 'profile' | 'chatbot' | 'luckydraw'>('home');
   const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
   const [favorites, setFavorites] = useState<number[]>([]);
 
@@ -69,7 +70,15 @@ export default function App() {
     setCurrentView('profile');
     setSelectedDestination(null);
   };
-
+  const handleGoToLuckyDraw = () => {
+    setCurrentView('luckydraw');
+    setSelectedDestination(null);
+  };
+  const handleGoToChatBot = () => {
+    setCurrentView('chatbot');
+    setSelectedDestination(null);
+  };
+  const isFavorite = (id: number) => favorites.includes(id);
   const toggleFavorite = (id: number) => {
     setFavorites(prev =>
       prev.includes(id)
@@ -77,12 +86,6 @@ export default function App() {
         : [...prev, id]
     );
   };
-  const handleGoToChatBot = () => {
-    setCurrentView('chatbot');
-    setSelectedDestination(null);
-  };
-  const isFavorite = (id: number) => favorites.includes(id);
-
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar for Desktop */}
@@ -92,6 +95,7 @@ export default function App() {
         onFavoritesClick={handleGoToFavorites}
         onProfileClick={handleGoToProfile}
         onChatBotClick={handleGoToChatBot}
+        onLuckyDrawClick={handleGoToLuckyDraw}
       />
 
       {/* Main Content */}
@@ -104,6 +108,7 @@ export default function App() {
             onFavoritesClick={handleGoToFavorites}
             onProfileClick={handleGoToProfile}
             onChatBotClick={handleGoToChatBot}
+            onLuckyDrawClick={handleGoToLuckyDraw}
           />
         )}
         {currentView === 'detail' && selectedDestination && (
@@ -112,9 +117,11 @@ export default function App() {
             onBack={handleBackToHome}
             isFavorite={isFavorite(selectedDestination.id)}
             toggleFavorite={() => toggleFavorite(selectedDestination.id)}
+            onBackToHome={handleBackToHome}
             onFavoritesClick={handleGoToFavorites}
             onProfileClick={handleGoToProfile}
             onChatBotClick={handleGoToChatBot}
+            onLuckyDrawClick={handleGoToLuckyDraw}
           />
         )}
         {currentView === 'favorites' && (
@@ -125,6 +132,7 @@ export default function App() {
             onBackToHome={handleBackToHome}
             onProfileClick={handleGoToProfile}
             onChatBotClick={handleGoToChatBot}
+            onLuckyDrawClick={handleGoToLuckyDraw}
           />
         )}
         {currentView === 'profile' && (
@@ -133,6 +141,7 @@ export default function App() {
             favoritesCount={favorites.length}
             onFavoritesClick={handleGoToFavorites}
             onChatBotClick={handleGoToChatBot}
+            onLuckyDrawClick={handleGoToLuckyDraw}
           />
         )}
         {currentView === 'chatbot' && (
@@ -140,6 +149,15 @@ export default function App() {
             onHomeClick={handleBackToHome}
             onFavoritesClick={handleGoToFavorites}
             onProfileClick={handleGoToProfile}
+            onLuckyDrawClick={handleGoToLuckyDraw}
+          />
+        )}
+        {currentView === 'luckydraw' && (
+          <LuckyDraw
+            onBackToHome={handleBackToHome}
+            onFavoritesClick={handleGoToFavorites}
+            onProfileClick={handleGoToProfile}
+            onChatBotClick={handleGoToChatBot}
           />
         )}
       </div>

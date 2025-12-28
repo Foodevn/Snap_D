@@ -1,4 +1,4 @@
-import { Home, MessageSquare, Heart, User, MapPin, Settings, LogOut } from 'lucide-react';
+import { Home, MessageSquare, Heart, User, MapPin, Settings, LogOut, Gift } from 'lucide-react';
 
 interface SidebarProps {
   currentView: string;
@@ -6,9 +6,10 @@ interface SidebarProps {
   onFavoritesClick: () => void;
   onProfileClick: () => void;
   onChatBotClick: () => void;
+  onLuckyDrawClick: () => void;
 }
 
-export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileClick, onChatBotClick }: SidebarProps) {
+export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileClick, onChatBotClick, onLuckyDrawClick }: SidebarProps) {
   return (
     <>
       {/* Desktop Sidebar */}
@@ -46,6 +47,16 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
             <span>Chat Bot</span>
           </button>
 
+          <button
+            onClick={onLuckyDrawClick}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${currentView === 'luckydraw'
+              ? 'bg-[#FFF5E6] text-[#FAA935]'
+              : 'text-gray-600 hover:bg-gray-50'
+              }`}
+          >
+            <Gift className="w-5 h-5" />
+            <span>Lucky Draw</span>
+          </button>
           <button
             onClick={onFavoritesClick}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-2 ${currentView === 'favorites'
