@@ -1,8 +1,6 @@
 import { Destination } from "../app/app/page";
 
 export const data: Destination[] = [
-
-
     // 13) Hotel
     {
         id: 13,
@@ -47,6 +45,7 @@ export const data: Destination[] = [
             }
         ]
     },
+
     // 14) Hotel
     {
         id: 14,
@@ -97,6 +96,7 @@ export const data: Destination[] = [
             }
         ]
     },
+
     // 15) Cafe
     {
         id: 15,

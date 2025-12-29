@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
         // Create AbortController for timeout
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 300000); // 30 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // 30 second timeout
 
         try {
             const response = await fetch('https://api.perplexity.ai/chat/completions', {
