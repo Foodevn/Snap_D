@@ -46,22 +46,22 @@ export function HomePage() {
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-18_1688380322.jpg',
       gridClass: 'col-span-2 row-span-2',
-      label: 'Hotels',
+      label: 'Cây thông cô đơn',
     },
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-10_1688379997.jpg',
       gridClass: 'col-span-1 row-span-1',
-      label: 'Cafes',
+      label: 'Nhà ga đà lạt',
     },
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-11_1688380022.jpg',
       gridClass: 'col-span-1 row-span-1',
-      label: 'Restaurants',
+      label: 'Vườn hoa thành phố',
     },
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-12_1688380050.jpg',
       gridClass: 'col-span-1 row-span-1',
-      label: 'Boutique Stay',
+      label: 'nhà thờ con gà',
     },
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-13_1688380078.jpg',
@@ -71,17 +71,17 @@ export function HomePage() {
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-15_1688380187.jpg',
       gridClass: 'col-span-2 row-span-1',
-      label: 'Fine Dining',
+      label: 'Thác Camly',
     },
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-17_1688380290.jpg',
       gridClass: 'col-span-1 row-span-1',
-      label: 'Resort',
+      label: 'Thung lũng tình yêu',
     },
     {
       url: 'https://statics.vinpearl.com/canh-dep-da-lat-8_1688379950.jpg',
       gridClass: 'col-span-1 row-span-1',
-      label: 'Cozy Spot',
+      label: 'Nhà thờ',
     },
   ];
 
