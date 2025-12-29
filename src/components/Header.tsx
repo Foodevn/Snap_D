@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export function Header({ showLogin, setShowLogin, currentPage, setCurrentPage }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  
+
   const navItems = [
     { label: 'Home', value: 'home' },
     { label: 'About', value: 'about' },
@@ -23,13 +23,7 @@ export function Header({ showLogin, setShowLogin, currentPage, setCurrentPage }:
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <span className="text-orange-500 italic" style={{ fontSize: '20px', fontWeight: 'bold' }}>
-              Snap
-            </span>
-            <span className="text-gray-800" style={{ fontSize: '20px', fontWeight: 'bold' }}>
-              -BL
-            </span>
-            <span className="text-xl">🏛️</span>
+            <img src="./logo-snap-d.png" alt="logo" className='w-40' />
           </div>
 
           {/* Desktop Navigation */}
@@ -38,11 +32,10 @@ export function Header({ showLogin, setShowLogin, currentPage, setCurrentPage }:
               <button
                 key={item.value}
                 onClick={() => setCurrentPage(item.value)}
-                className={`transition-colors ${
-                  currentPage === item.value
-                    ? 'text-orange-500'
-                    : 'text-gray-700 hover:text-orange-500'
-                }`}
+                className={`transition-colors ${currentPage === item.value
+                  ? 'text-orange-500'
+                  : 'text-gray-700 hover:text-orange-500'
+                  }`}
               >
                 {item.label}
               </button>
@@ -92,11 +85,10 @@ export function Header({ showLogin, setShowLogin, currentPage, setCurrentPage }:
                     setCurrentPage(item.value);
                     setMobileMenuOpen(false);
                   }}
-                  className={`text-left px-4 py-2 transition-colors ${
-                    currentPage === item.value
-                      ? 'text-orange-500 bg-orange-50'
-                      : 'text-gray-700 hover:text-orange-500 hover:bg-gray-50'
-                  }`}
+                  className={`text-left px-4 py-2 transition-colors ${currentPage === item.value
+                    ? 'text-orange-500 bg-orange-50'
+                    : 'text-gray-700 hover:text-orange-500 hover:bg-gray-50'
+                    }`}
                 >
                   {item.label}
                 </button>

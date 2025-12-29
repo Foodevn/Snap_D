@@ -16,6 +16,7 @@ export function LoginForm({ showLogin, setShowLogin }: LoginFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (showLogin) {
+      window.location.href = '/app';
       console.log('Login:', { email, password });
     } else {
       console.log('Register:', { username, email, password });
@@ -54,7 +55,7 @@ export function LoginForm({ showLogin, setShowLogin }: LoginFormProps) {
 
         <div className="relative">
           <input
-            type="email"
+            type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter Email or Username"

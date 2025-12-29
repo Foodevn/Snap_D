@@ -16,13 +16,7 @@ export function Footer() {
           {/* Brand Section - Desktop */}
           <div className="col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-orange-500 italic text-2xl" style={{ fontWeight: 'bold' }}>
-                Snap
-              </span>
-              <span className="text-gray-800 text-2xl" style={{ fontWeight: 'bold' }}>
-                -BL
-              </span>
-              <span className="text-2xl">🏛️</span>
+              <img src="./logo-snap-d.png" alt="logo" className='w-40' />
             </div>
             <p className="text-gray-500 text-sm mb-6 leading-relaxed">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, enim.

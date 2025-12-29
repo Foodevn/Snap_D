@@ -180,6 +180,9 @@ export function ToursPage() {
             <div
               key={destination.id}
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer group"
+              onClick={() => {
+                window.location.href = '/app';
+              }}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
@@ -188,13 +191,13 @@ export function ToursPage() {
                   alt={destination.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute top-3 left-3">
+                {/* <div className="absolute top-3 left-3">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${destination.category === 'hotel' ? 'bg-blue-500' :
                     destination.category === 'cafe' ? 'bg-green-500' : 'bg-purple-500'
                     }`}>
                     {destination.category.charAt(0).toUpperCase() + destination.category.slice(1)}
                   </span>
-                </div>
+                </div> */}
                 <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
                   <Star size={14} className="text-yellow-500 fill-yellow-500" />
                   <span className="text-sm font-medium">{destination.rating}</span>
