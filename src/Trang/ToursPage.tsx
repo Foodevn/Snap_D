@@ -148,8 +148,8 @@ export function ToursPage() {
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all ${activeCategory === cat.id
-                    ? 'bg-orange-400 text-white shadow-md'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-orange-400 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
               >
                 {cat.icon}
@@ -190,7 +190,7 @@ export function ToursPage() {
                 />
                 <div className="absolute top-3 left-3">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${destination.category === 'hotel' ? 'bg-blue-500' :
-                      destination.category === 'cafe' ? 'bg-green-500' : 'bg-purple-500'
+                    destination.category === 'cafe' ? 'bg-green-500' : 'bg-purple-500'
                     }`}>
                     {destination.category.charAt(0).toUpperCase() + destination.category.slice(1)}
                   </span>
