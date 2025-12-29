@@ -88,7 +88,11 @@ export function Sidebar({ currentView, onHomeClick, onFavoritesClick, onProfileC
         </nav>
 
         {/* User Profile */}
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 border-t border-gray-200"
+          onClick={() => {
+            window.location.href = "/"
+          }}
+        >
           <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
             <div className="w-10 h-10 bg-gradient-to-br from-[#FAA935] to-[#FF8C42] rounded-full flex items-center justify-center text-white">
               <span>A</span>
