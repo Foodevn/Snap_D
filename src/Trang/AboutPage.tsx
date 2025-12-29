@@ -3,13 +3,13 @@ import { SubscribeSection } from '../components/SubscribeSection';
 import { MapPin, MessageCircle, Gift, Camera, Search, Heart, Users, Target, Lightbulb } from 'lucide-react';
 
 export function AboutPage() {
-  const teamMembers = [
-    {
-      name: 'Snap D Team',
-      role: 'Development',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
-    },
-  ];
+  // const teamMembers = [
+  //   {
+  //     name: 'We\'re Different',
+  //     role: 'Development',
+  //     image: 'https://statics.vinpearl.com/canh-dep-da-lat-19_1688380356.jpg',
+  //   },
+  // ];
 
   const stats = [
     { number: '50+', label: 'Destinations' },
@@ -23,7 +23,7 @@ export function AboutPage() {
       {/* Hero Section */}
       <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] w-full overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80"
+          src="https://statics.vinpearl.com/canh-dep-da-lat-27_1688380567.jpg"
           alt="Da Lat City"
           className="w-full h-full object-cover"
         />
@@ -123,7 +123,7 @@ export function AboutPage() {
           <div className="space-y-6">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[300px] lg:h-[350px]">
               <img
-                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80"
+                src="https://statics.vinpearl.com/canh-dep-da-lat-29_1688380622.jpg"
                 alt="Da Lat Cafe"
                 className="w-full h-full object-cover"
               />
@@ -131,14 +131,14 @@ export function AboutPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative rounded-2xl overflow-hidden shadow-xl h-[150px]">
                 <img
-                  src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80"
+                  src="https://statics.vinpearl.com/canh-dep-da-lat-31_1688380674.jpg"
                   alt="Hotel"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-xl h-[150px]">
                 <img
-                  src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+                  src="https://statics.vinpearl.com/canh-dep-da-lat-32_1688380702.jpg"
                   alt="Restaurant"
                   className="w-full h-full object-cover"
                 />

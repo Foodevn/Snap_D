@@ -123,7 +123,7 @@ export function ToursPage() {
       {/* Hero Section */}
       <div className="relative h-[250px] sm:h-[350px] md:h-[400px] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80"
+          src="https://statics.vinpearl.com/canh-dep-da-lat-25_1688380514.jpg"
           alt="Explore Da Lat"
           className="w-full h-full object-cover"
         />

@@ -37,49 +37,49 @@ export function HomePage() {
   ];
 
   const featuredImages = [
-    'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
+    'https://statics.vinpearl.com/canh-dep-da-lat-6_1688379889.jpg',
+    'https://statics.vinpearl.com/canh-dep-da-lat-3_1688379797.jpg',
+    'https://statics.vinpearl.com/canh-dep-da-lat-4_1688379829.jpg',
   ];
 
   const galleryImages = [
     {
-      url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-18_1688380322.jpg',
       gridClass: 'col-span-2 row-span-2',
       label: 'Hotels',
     },
     {
-      url: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-10_1688379997.jpg',
       gridClass: 'col-span-1 row-span-1',
       label: 'Cafes',
     },
     {
-      url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-11_1688380022.jpg',
       gridClass: 'col-span-1 row-span-1',
       label: 'Restaurants',
     },
     {
-      url: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-12_1688380050.jpg',
       gridClass: 'col-span-1 row-span-1',
       label: 'Boutique Stay',
     },
     {
-      url: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-13_1688380078.jpg',
       gridClass: 'col-span-1 row-span-1',
       label: 'Coffee',
     },
     {
-      url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-15_1688380187.jpg',
       gridClass: 'col-span-2 row-span-1',
       label: 'Fine Dining',
     },
     {
-      url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-17_1688380290.jpg',
       gridClass: 'col-span-1 row-span-1',
       label: 'Resort',
     },
     {
-      url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80',
+      url: 'https://statics.vinpearl.com/canh-dep-da-lat-8_1688379950.jpg',
       gridClass: 'col-span-1 row-span-1',
       label: 'Cozy Spot',
     },
@@ -128,9 +128,9 @@ export function HomePage() {
                   className="absolute overflow-hidden rounded-3xl border-2 border-orange-400 shadow-xl transition-all hover:scale-105"
                   style={{
                     width: '180px',
-                    height: '320px',
-                    left: `${index * 140}px`,
-                    top: `${index * 80}px`,
+                    height: '360px',
+                    left: `${index * 200}px`,
+                    top: `${index * 100}px`,
                     zIndex: index + 1,
                   }}
                 >
